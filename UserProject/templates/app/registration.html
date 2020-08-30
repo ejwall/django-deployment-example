@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends "app/base.html" %}
+  {% block body_block %}
+
+    <!-- Registration form -->
+    {% if registered %}
+      <h1>Thank you for registering!</h1>
+
+    {% else %}
+      <h2>Welcome to my Web Page</h2>
+      <p class='lead'>Give me all of your personal information!</p>
+      <div class="container" text-align=left>
+      <!-- 'enctype' tag allows images in form, among other things -->
+      <form enctype='multipart/form-data' method='POST'>
+        {% csrf_token %} <!-- security token -->
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        <button type="submit" class="btn btn-primary">Create Account</button>
+      </form>
+      </div>
+
+    {% endif %}
+
+  {% endblock %}
